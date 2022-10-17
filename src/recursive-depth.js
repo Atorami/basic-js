@@ -16,23 +16,13 @@ class DepthCalculator {
   calculateDepth(arr) {
     let counter = 1
 
-    arr.forEach(element => {
-        toDeep(element)
-    });
-
-    function toDeep(value){
-        if(Array.isArray(value)){
-            counter++
-            for(let i = 0 ; i < value.length; i++ ){
-                if(Array.isArray(value[i])){
-                    value = value.flat()
-                    toDeep(value[i])
-                }
-            }
+    for(let i = 0 ; i < arr.length; i++){
+        if(Array.isArray(arr[i])){
+          counter = this.calculateDepth(arr.flat())
         }
     }
+
     return counter
-    console.log(counter)
   }
 }
 
